@@ -1,4 +1,4 @@
-from Funcoes import adicionar_compra, finalizar_compra, remover_compra, listar_compras
+from Compras import Compra
 
 while True:
     print("Selecione uma opção:")
@@ -10,13 +10,18 @@ while True:
     opcao = input("Opção: ")
 
     if opcao == 'a':
-        adicionar_compra()
+        produto = input("Por favor, digite o produto: ")
+        preco = input("Por favor, digite o valor do preco: ")
+        quantidade = input("Por favor, digite a quantidade: ")
+        compra = Compra(produto, preco, quantidade)
+        compra.adicionar_compra(compra)
     elif opcao == 'f':
-        finalizar_compra()
+        Compra.finalizar_compra()
     elif opcao == 'r':
-        remover_compra()
+        produto_digitado_a_ser_retirado = input("Digite o produto que deseja retirar: ")
+        Compra.remover_compra(produto_digitado_a_ser_retirado)
     elif opcao == 'l':
-        listar_compras()
+        Compra.listar_compras()
     elif opcao == 's':
         break
     else:
