@@ -1,28 +1,43 @@
-from Compras import Compra
+from AlunosMatriculados import AlunosMatriculados
+
+alunos = []
+
 
 while True:
     print("Selecione uma opção:")
-    print("[a] Adicionar compra")
-    print("[f] Finalizar compra")
-    print("[r] Remover compra")
-    print("[l] Listar compras")
+    print("[a] Adicionar aluno")
+    print("[m] Calcular a média de um aluno")
+    print("[f] Descobrir a nota necessária na prova final")
+    print("[l] Listar alunos")
     print("[s] Sair")
     opcao = input("Opção: ")
 
     if opcao == 'a':
-        produto = input("Por favor, digite o produto: ")
-        preco = input("Por favor, digite o valor do preco: ")
-        quantidade = input("Por favor, digite a quantidade: ")
-        compra = Compra(produto, preco, quantidade)
-        compra.adicionar_compra(compra)
+        matricula = input("Digite o número da matricula: ")
+        nome = input("Digite o nome: ")
+        nota1 = input("Digite a nota da primeira prova: ")
+        nota2 = input("Digite a nota da segunda prova: ")
+        notaTrabalho = input("Digite a nota do trabalho: ")
+        alunos.append(AlunosMatriculados(matricula, nome, nota1, nota2, notaTrabalho))
+    elif opcao == 'm':
+        nome = input("Qual o nome do aluno: ")
+        for i in alunos:
+            if i.nome == nome:
+                i.media()
     elif opcao == 'f':
-        Compra.finalizar_compra()
-    elif opcao == 'r':
-        produto_digitado_a_ser_retirado = input("Digite o produto que deseja retirar: ")
-        Compra.remover_compra(produto_digitado_a_ser_retirado)
+        nome = input("Qual o nome do aluno: ")
+        for i in alunos:
+            if i.nome == nome:
+                i.final()
     elif opcao == 'l':
-        Compra.listar_compras()
+        for i, aluno in enumerate(alunos):
+                print(f"{i} Matricula = {aluno.matricula}")
+                print(f"Nome = {aluno.nome}")
+                print(f"Nota da primeira prova = {aluno.nota1}")
+                print(f"Nota da segunda prova = {aluno.nota2}")
+                print(f"Nota do trabalho = {aluno.notaTrabalho}") 
     elif opcao == 's':
         break
     else:
         print("Por favor, digite uma opção válida.") 
+
